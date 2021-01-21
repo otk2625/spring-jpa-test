@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+     # force: true #강제로 utf-8로!!
+    
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/ # /src/main/webapp
+      suffix: .jsp
+  
+  #Connection conn = DBConn.getConnection();
+  #PrepareseStatement pstpt = conn.prepatr(sql); 역할을 해줌
+  datasource:  # 데이터소스 객체를 만들어줌
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springdb?serverTimezone=Asia/Seoul
+    username: springuser
+    password: bitc5600
+    
+  jpa:
+    hibernate:
+      ddl-auto: update #@Entity로된 클래스 테이블 생성해줌 서버 실행하고나면 update로 변경해준다!
+    show-sql: true #만든거 콘솔 띄워줌  
+  

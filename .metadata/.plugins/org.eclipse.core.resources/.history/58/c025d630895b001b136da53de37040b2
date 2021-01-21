@@ -1,0 +1,15 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+     # force: true #강제로 utf-8로!!
+    
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/ # /src/main/webapp
+      suffix: .jsp
+ 

@@ -1,0 +1,14 @@
+package com.cos.springboot.service;
+
+import org.springframework.stereotype.Service;
+
+import com.cos.springboot.domain.post.Post;
+
+@Service //서버 실행시에 IoC에 등록
+public class PostService {
+	
+	public Post 글저장(Post post) {
+		System.out.println("글저장 : " + post);
+		return null;
+	}
+}

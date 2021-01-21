@@ -1,0 +1,49 @@
+package com.cos.springboot.web;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.cos.springboot.domain.post.Post;
+import com.cos.springboot.service.PostService;
+
+// http요청시 @Controller, @RestController가 붙은 클래스가 메모리(IoC Container)에 로딩
+
+@Controller //viewResolver
+public class PostController {
+	PostService postService = new PostService();
+	
+	public PostController(PostService postService) {
+		System.out.println("PostController 실행됨");
+		this.postService = postService;
+	}
+	
+	@GetMapping("/post") //produce =>응답을 뭐로할지 데이터 타입을 결정 이거는 RestController일때만 가능
+	//name은 주소 : 생략 가능 (default)
+	public String findAll() {
+		// 원래 라면
+		// 1.DB에 데이터 가져오기
+		// 2.request 값 담기
+		// 3.RequestDispatcher사용 스프링부트는 알아서 처리해줌
+		
+		
+		
+		return "post/list"; //여기서 Dispatcher로 처리 
+	}
+	
+	@GetMapping("/post/{id}")
+	public String findById(@PathVariable int id) {
+		return "post/detail";
+	}
+	
+	@PostMapping("/post")
+	public String save(/*@RequestBody*/ Post post) { // x-www-form-urlencoded  @RequestBody는 json으로 파싱함
+		System.out.println("Post : " + post);
+		postService.글저장(post);
+		return "redirect:/post"; //response.sendRedirect 발동
+	}
+	
+	
+}

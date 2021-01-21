@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+     # force: true #강제로 utf-8로!!
+    
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/ # /src/main/webapp
+      suffix: .jsp
+  
+  #Connection conn = DBConn.getConnection();
+  #PrepareseStatement pstpt = conn.prepatr(sql); 역할을 해줌
+  datasource:  # 데이터소스 객체를 만들어줌
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springdb?serverTimezone=Asia/Seoul
+    username: springuser
+    password: bitc5600
+    
+    #ORM기술!!  (Object Relation Mapping (원래는 fk로 해야함 => java object))
+    #데이터를 영구히 저장할 수 있는 함수들의 집약체
+    #기능1 : 자바오브젝트 생성하면 테이블이 생성된다
+  jpa: #Jave Persistence API (DAO 내장) - Hibernate기반(ORM기술) 기술임!
+    hibernate:
+      ddl-auto: update #@Entity로된 클래스 테이블 생성해줌 서버 실행하고나면 update로 변경해준다!
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true #만든거 콘솔 띄워줌  
+  

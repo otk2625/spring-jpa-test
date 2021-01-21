@@ -1,0 +1,32 @@
+package com.cos.springboot.web;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.cos.springboot.domain.post.Post;
+
+// http요청시 @Controller, @RestController가 붙은 클래스가 메모리(IoC Container)에 로딩
+
+@Controller //viewResolver
+public class PostController {
+	
+	@GetMapping("/post") //produce =>응답을 뭐로할지 데이터 타입을 결정 이거는 RestController일때만 가능
+	//name은 주소 : 생략 가능 (default)
+	public String findAll() {
+		return "post/list";
+	}
+	
+	@GetMapping("/post/{id}")
+	public String findById(@PathVariable int id) {
+		return "post/detail";
+	}
+	
+	@PostMapping("/post")
+	public String save(Post post) { // x-www-form-urlencoded
+		return "post/list";
+	}
+	
+	
+}
